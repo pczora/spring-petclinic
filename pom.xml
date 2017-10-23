@@ -213,6 +213,9 @@
         <version>1.2.4</version>
           <configuration>
               <timeoutFactor>5.0</timeoutFactor>
+              <outputFormats>
+                  <outputFormat>XML</outputFormat>
+              </outputFormats>
           </configuration>
       </plugin>
     </plugins>
