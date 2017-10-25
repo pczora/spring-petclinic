@@ -25,12 +25,12 @@ node {
         withCredentials([credentials]) {
             //noinspection GroovyAssignabilityCheck
             mvn "org.codehaus.mojo:sonar-maven-plugin:3.2:sonar -Dsonar.host.url=${cesUrl}/sonar " +
-            "-Dsonar.login=${USERNAME} -Dsonar.password=${PASSWORD} -Dsonar.exclusions=target/** " +
-            "-Dsonar.pitest.mode=reuseReport"
+                    "-Dsonar.login=${USERNAME} -Dsonar.password=${PASSWORD} -Dsonar.exclusions=target/** " +
+                    "-Dsonar.pitest.mode=reuseReport"
         }
     }
 }
-
+    
 void mvn(String args) {
     sh "./mvnw --batch-mode -V -U -e ${args}"
 }
