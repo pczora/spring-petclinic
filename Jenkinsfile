@@ -1,8 +1,8 @@
 #!groovy
 node {
-    cesFqdn = "192.168.115.83"
-    cesUrl = "https://${cesFqdn}"
-    credentials = usernamePassword(credentialsId: 'creds', passwordVariable: 'PASSWORD', usernameVariable: 'USERNAME')
+    SONAR_URL = "sonar.qube"
+    USERNAME = "username"
+    PASSWORD = "password"
 
     stage('Checkout') {
         checkout scm
@@ -24,13 +24,13 @@ node {
     stage('SonarQube') {
         withCredentials([credentials]) {
             //noinspection GroovyAssignabilityCheck
-            mvn "org.codehaus.mojo:sonar-maven-plugin:3.2:sonar -Dsonar.host.url=${cesUrl}/sonar " +
+            mvn "org.codehaus.mojo:sonar-maven-plugin:3.2:sonar -Dsonar.host.url=${SONAR_URL} " +
                     "-Dsonar.login=${USERNAME} -Dsonar.password=${PASSWORD} -Dsonar.exclusions=target/** " +
                     "-Dsonar.pitest.mode=reuseReport"
         }
     }
 }
-    
+
 void mvn(String args) {
     sh "./mvnw --batch-mode -V -U -e ${args}"
 }
